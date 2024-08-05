@@ -1,0 +1,11 @@
+/* Styles pour les statuts */
+.status-actif {
+    color: green !important;
+}
+
+.status-suspendu {
+    color: red !important;
+}
+body{
+    background-color: aqua;
+}
