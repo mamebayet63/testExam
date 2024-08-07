@@ -1,6 +1,7 @@
 <?php
     require_once('../bd.php');
     extract($_POST);
+    
     $insert_Data = 'INSERT INTO abonne (nom,prenom,email,mot_de_passe,adresse,telephone)  
     VALUE (:nom,:prenom,:mail,:mot_de_passe,:adresse,:telephone)';
     $envoi_Data = $pdo->prepare($insert_Data);
