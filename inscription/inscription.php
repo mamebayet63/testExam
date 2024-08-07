@@ -1,92 +1,119 @@
-<!DOCTYPE html>
-<html lang="fr">
+<?php
+session_start();
+require_once("../bd.php");
+if ($pdo !== null) {
+    try {
+        $proprietaires = $pdo->query("SELECT * FROM categorie")->fetchAll();
+    } catch (PDOException $e) {
+        echo "Requete Echoué: " . $e->getMessage();
+    }
+} else {
+    echo "Impossible d'executer la requete.";
+}
+
+?>
+
+<!doctype html>
+<html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulaire d'inscription</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="style.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Formulaire Propriétaires</title>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+    </style>
+    <link href="
+https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.min.css
+" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
-<body>
-    <div class="container mt-3">
-        <div class="form-container">
-            <h2 class="text-center mb-4">Inscription</h2>
-            <form id="registrationForm" method="post" action="AjoutUser.php">
-                <div class="row mb-3">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="fullName">Nom </label>
-                            <input type="text" class="form-control" id="fullName" name="nom" placeholder="John Doe" required>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="fullName">prenom</label>
-                            <input type="text" class="form-control" id="fullName" name="prenom" placeholder="John Doe" required>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="row mb-3">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="password">Mot de passe</label>
-                            <input type="password" class="form-control" id="password" name="mot_de_passe" placeholder="••••••••" required minlength="8">
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="confirmPassword">Confirmer le mot de passe</label>
-                            <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="••••••••" required>
-                        </div>
-                    </div>
+<body class="bg-black text-white" style="font-family: Poppins, sans-serif">
+    <div class="container">
+        <div class="row">
+            <div class="col-10">
+            <div class="container my-5 ">
+            <h2 class="my-3 text-center">S'inscrire</h2>
+        <form class="" action="AjoutUser.php" method="post">
+            <div class="row  my-3">
+                <div class="form-group col-md-6">
+                    <label for="inputField1">nom</label>
+                    <input type="text"  name="nom"  class="form-control" id="inputField1" placeholder="Nom">
                 </div>
-
-                <div class="row mb-3">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="phone">Numéro de téléphone (Optionnel)</label>
-                            <input type="tel" class="form-control" id="phone" name="telephone" placeholder="+33 6 12 34 56 78">
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="address">Adresse</label>
-                            <input type="text" class="form-control" id="address" name="adresse" placeholder="123 rue Exemple, 75000 Paris" required>
-                        </div>
-                    </div>
+                <div class="form-group col-md-6">
+                    <label for="inputField2">prenom</label>
+                    <input type="text"  name="prenom" class="form-control" id="inputField2" placeholder="Prenom">
                 </div>
-
-                <div class="row mb-3">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="birthDate">Date de naissance (Optionnel)</label>
-                            <input type="date" class="form-control" id="birthDate" name="birthDate">
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="email">Adresse email</label>
-                            <input type="email" class="form-control" id="email" name="mail" placeholder="johndoe@example.com" required>
-                        </div>
-                    </div>
+            </div>
+            <div class="row my-3">
+                <div class="form-group col-md-6">
+                    <label for="inputField3">email</label>
+                    <input type="text"  name="email" class="form-control" id="inputField3" placeholder="+221 77 777 77 77">
                 </div>
-
-                <div class="row">
-                    <div class="col-md-3">
-                        <button type="submit" class="btn btn-success btn-block">S'inscrire</button>
-                    </div>
-                    <div class="col-md-3">
-                        <button type="reset" class="btn btn-danger btn-block">Annuler</button>
-                    </div>
+                <div class="form-group col-md-6">
+                    <label for="inputField2">telephone</label>
+                    <input type="text"  name="telephone" class="form-control" id="inputField2" placeholder="Prenom">
                 </div>
-            </form>
+            </div>
+            <div class="row my-3">
+                <div class="form-group col-md-6">
+                    <label for="inputField3">mot de passe</label>
+                    <input type="text" name="mot_de_passe" class="form-control" id="inputField3" placeholder="...">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputField3">Adresse</label>
+                    <input type="text" name="adresse" class="form-control" id="inputField3" placeholder="...">
+                </div>
+            </div>
+            <div class="row my-3">
+                <div class="form-group col-md-12">
+                    <label for="inputField3">Profil</label>
+                    <input type="file"  name="profil" class="form-control" id="inputField3" placeholder="">
+                </div>
+            </div>
+            <button type="submit" class="bn31">Soumettre</button>
+        </form>
+        </div>
+            </div>
+            <div class="col-6 mt-5">
+                <?php if (!empty($_SESSION)) : ?>
+                    <div class="alert alert-danger col-12" role="alert">
+                        <h2>Erreur</h2>
+                        <ul class="mt-4">
+                            <?php if (isset($_SESSION['err_code']) && !empty($_SESSION['err_code'])) : ?>
+                                <li><?= $_SESSION['err_code'] ?></li>
+                            <?php endif; ?>
+                            <?php if (isset($_SESSION['err_nom'])  && !empty($_SESSION['err_nom'])) : ?>
+                                <li><?= $_SESSION['err_nom'] ?></li>
+                            <?php endif; ?>
+                            <?php if (isset($_SESSION['err_prenom'])  && !empty($_SESSION['err_prenom'])) : ?>
+                                <li><?= $_SESSION['err_prenom'] ?></li>
+                            <?php endif; ?>
+                            <?php if (isset($_SESSION['err_tel']) && !empty($_SESSION['err_tel'])) : ?>
+                                <li><?= $_SESSION['err_tel'] ?></li>
+                            <?php endif; ?>
+                            <?php if (isset($_SESSION['err_email'])  && !empty($_SESSION['err_email'])) : ?>
+                                <li><?= $_SESSION['err_email'] ?></li>
+                            <?php endif; ?>
+                            <?php if (isset($_SESSION['err_conf_email'])  && !empty($_SESSION['err_conf_email'])) : ?>
+                                <li> <?= $_SESSION['err_conf_email'] ?></li>
+                            <?php endif; ?>
+                            <?php
+                            unset($_SESSION["err_code"]);
+                            unset($_SESSION["err_nom"]);
+                            unset($_SESSION["err_prenom"]);
+                            unset($_SESSION["err_tel"]);
+                            unset($_SESSION["err_email"]);
+                            unset($_SESSION['err_conf_email'])
+                            ?>
+                        </ul>
+                    </div>
+                <?php endif; ?>
+            </div>
         </div>
     </div>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="scripts.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
+
 </html>

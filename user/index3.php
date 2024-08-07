@@ -1,7 +1,18 @@
 <?php
 require_once "../bd.php";
+session_start();
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.php");
+    exit();
+}
+
+$user_id = $_SESSION['user_id'];
+$email = $_SESSION['email'];
 if ($pdo !== null) {
     try {
+        $stmt = $pdo->prepare("SELECT * FROM abonne WHERE email = :email");
+            $stmt->execute([':email' => $email]);
+            $user = $stmt->fetch(PDO::FETCH_ASSOC);
         $popularBooks = $pdo->query("SELECT * FROM livre ORDER BY popularite DESC LIMIT 5")->fetchAll();
         $newBooks = $pdo->query("SELECT * FROM livre ORDER BY date_ajout DESC LIMIT 5")->fetchAll();
         $categories = $pdo->query("SELECT * FROM categorie")->fetchAll();
@@ -44,9 +55,13 @@ if ($pdo !== null) {
                 <div class="col-1 ">
                     <img src="image/1-removebg-preview.png " alt="" class="w-75 h-75">
                 </div>
-                <div class="col-3 ">
-                    <input type="text" class="monSearch mx-5">
+                <div class="col-2 ">
+                    <input type="text" class="monSearch mx-5 w-100">
                 </div>
+                <div class="col-1">
+                    <a href="profil.php"><img src="image/<?= $user['profil'] ?>" alt=""></a>
+                </div>
+                
             </div>
             <div class="row d-flex  ">
                 <hr>

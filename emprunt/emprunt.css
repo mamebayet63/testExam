@@ -1,0 +1,28 @@
+/* livre.css */
+.etat-en-cours {
+    background-color: yellow !important;
+    color: black;
+    border-radius: 10px;
+    padding: 5px !important;
+    text-align: center !important;
+    width: 70px !important;
+    
+}
+
+.etat-termine {
+    background-color: green !important;
+    color: white;
+    border-radius: 10px;
+    padding: 5px;
+    text-align: center;
+    width: 70px !important;
+}
+
+.etat-echeu {
+    background-color: red !important;
+    color: white !important;
+    border-radius: 10px;
+    padding: 5px !important;
+    text-align: center;
+    width: 70px !important;
+}
