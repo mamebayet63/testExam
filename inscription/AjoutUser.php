@@ -16,5 +16,5 @@ $envoi_Data->execute([
     ':profil' => $profil
 ]);
 
-header("Location: ");
+header("Location: ../user/index3.php");
 ?>

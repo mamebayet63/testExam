@@ -27,6 +27,7 @@
                     </div>
                     <button type="submit" class="btn btn-primary mt-3">Se connecter</button>
                 </form>
+                <span>ou <a href="../inscription/inscription.php">S'inscrire</a></span>
             </div>
         </div>
     </div>

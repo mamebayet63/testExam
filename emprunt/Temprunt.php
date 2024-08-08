@@ -44,12 +44,15 @@ try {
 
     $stmt->execute();
     $emprunts = $stmt->fetchAll();
+    
+    // Vérifiez le nombre de résultats obtenus
+    if (empty($emprunts)) {
+        echo "Aucun emprunt trouvé.";
+    }
 } catch (PDOException $e) {
     echo "Requête échouée: " . $e->getMessage();
 }
 ?>
-
-
 
 <!doctype html>
 <html lang="en">
@@ -64,10 +67,38 @@ try {
 </head>
 
 <body class="">
+
+<div class="container-fluid">
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Bibliotheque</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active " aria-current="page" href="../livre/Tlivre2.php">Livres</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " href="../abonne/Tabonne.php">abonnés</a>
+        </li>
+        
+        <li class="nav-item">
+          <a class="nav-link text-primary" aria-disabled="true" href="Temprunt.php">Emprunt</a>
+        </li>
+      </ul>
+      <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
+</div>
     <div class="container">
         <div class="d-flex gap-3 align-items-center mt-4">
            
-            <a href="../listes/listProprio.php"><button class="btn btn-primary">Retour</button></a>
             <h2 class="mx-2">Listes des Emprunts</h2>
         </div>
         <div class="row">
@@ -85,7 +116,7 @@ try {
             <div class="row">
                 <div class="col-10 mt-4">
                     <table class="table text-center">
-                        <tr class="table-active" >
+                        <tr class="table-active">
                             <th scope="col">Abonné</th>
                             <th scope="col">Livre</th>
                             <th scope="col">Date d'emprunt</th>
@@ -101,13 +132,13 @@ try {
                                 <td><?= htmlspecialchars($emprunt['date_retour']) ?></td>
                                 
                                 <td class="d-flex justify-content-center">
-                                <div class="row text-center
-                                <?= 
-                                    $emprunt['etat'] === 'en cours' ? 'etat-en-cours' :
-                                    ($emprunt['etat'] === 'retourné' ? 'etat-termine' :
-                                    ($emprunt['etat'] === 'echus' ? 'etat-echeu' : '')
-                                ) ?>
-                                ">
+                                    <div class="row text-center
+                                    <?= 
+                                        $emprunt['etat'] === 'en cours' ? 'etat-en-cours' :
+                                        ($emprunt['etat'] === 'retourné' ? 'etat-termine' :
+                                        ($emprunt['etat'] === 'échus' ? 'etat-echeu' : '')
+                                    ) ?>
+                                    ">
                                     <?= htmlspecialchars($emprunt['etat']) ?>
                                     </div>
                                 </td>
@@ -117,8 +148,6 @@ try {
                                 </td>
 
                             </tr>
-                          
-                            
                         <?php endforeach; ?>
                     </table>
                 </div>

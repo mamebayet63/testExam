@@ -69,9 +69,13 @@ https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.min.css
                 
             </div>
             <div class="row my-3">
-                <div class="form-group col-md-12">
+                <div class="form-group col-md-6">
                     <label for="inputField3">Description</label>
                     <input type="text" name="descs" class="form-control" id="inputField3" placeholder="...">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputField3">Stock</label>
+                    <input type="number" name="disponible" class="form-control" id="inputField3" placeholder="...">
                 </div>
             </div>
             <div class="row my-3">

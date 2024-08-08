@@ -2,70 +2,86 @@
 require_once "../bd.php";
 session_start();
 if (!isset($_SESSION['user_id'])) {
-    header("Location: login.php");
+    header("Location: ../testConnexion/login.php");
     exit();
 }
 
 $user_id = $_SESSION['user_id'];
 $email = $_SESSION['email'];
+
+$searchTerm = '';
+$searchResults = [];
+
 if ($pdo !== null) {
     try {
         $stmt = $pdo->prepare("SELECT * FROM abonne WHERE email = :email");
-            $stmt->execute([':email' => $email]);
-            $user = $stmt->fetch(PDO::FETCH_ASSOC);
-        $popularBooks = $pdo->query("SELECT * FROM livre ORDER BY popularite DESC LIMIT 5")->fetchAll();
-        $newBooks = $pdo->query("SELECT * FROM livre ORDER BY date_ajout DESC LIMIT 5")->fetchAll();
-        $categories = $pdo->query("SELECT * FROM categorie")->fetchAll();
+        $stmt->execute([':email' => $email]);
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if (isset($_GET['search'])) {
+            $searchTerm = $_GET['search'];
+            $searchStmt = $pdo->prepare("SELECT * FROM livre WHERE titre LIKE :searchTerm");
+            $searchStmt->execute([':searchTerm' => '%' . $searchTerm . '%']);
+            $searchResults = $searchStmt->fetchAll();
+        } else {
+            $popularBooksStmt = $pdo->query("SELECT * FROM livre ORDER BY popularite DESC LIMIT 5");
+            $popularBooks = $popularBooksStmt->fetchAll();
+
+            $newBooksStmt = $pdo->query("SELECT * FROM livre ORDER BY date_ajout DESC LIMIT 5");
+            $newBooks = $newBooksStmt->fetchAll();
+
+            $categoriesStmt = $pdo->query("SELECT * FROM categorie");
+            $categories = $categoriesStmt->fetchAll();
+        }
     } catch (PDOException $e) {
-        echo "Requete Echoué: " . $e->getMessage();
+        echo "Requête échouée: " . $e->getMessage();
     }
 } else {
-    echo "Impossible d'executer la requete.";
+    echo "Impossible d'exécuter la requête.";
 }
 ?>
 
-
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Accueil - Bibliothèque</title>
     <link rel="stylesheet" href="indexT.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-       
+        /* Style personnalisé si nécessaire */
     </style>
 </head>
-
 <body>
 <div class="container-fluid">
     <!-- En-tête -->
-    <header>
-            <div class="row d-flex justify-content-between align-items-center mt-2">
-                <div class="col-4 ">
-                    <ul>
-                        <li class="mx-3">Accueil</li>
-                        <li class="mx-3">Livres</li>
-                        <li class="mx-3">Compte</li>
-                        <li class="mx-3">Compte</li>
-                    </ul>
-                </div>
-                <div class="col-1 ">
-                    <img src="image/1-removebg-preview.png " alt="" class="w-75 h-75">
-                </div>
-                <div class="col-2 ">
-                    <input type="text" class="monSearch mx-5 w-100">
-                </div>
-                <div class="col-1">
-                    <a href="profil.php"><img src="image/<?= $user['profil'] ?>" alt=""></a>
-                </div>
-                
+    <header class="sticky-top bg-white">
+        <div class="row d-flex justify-content-between align-items-center mt-2">
+            <div class="col-4">
+                <ul>
+                    <a href="index3.php" class="text-decoration-none text-black"><li class="mx-3">Accueil</li></a>
+                    <a href="MesLivres.php" class="text-decoration-none  text-black"><li class="mx-3">Livres</li></a>
+                    <a href="propos.php" class="text-decoration-none text-black"><li class="mx-3">Qui sommes nous</li></a>
+                </ul>
             </div>
-            <div class="row d-flex  ">
-                <hr>
+            <div class="col-1">
+                <img src="image/1-removebg-preview.png" alt="" class="w-75 h-75">
             </div>
+            <div class="col-3">
+                <form class="d-flex" method="GET" action="">
+                    <input class="form-control me-2 monSearch" type="search" name="search" placeholder="Recherche par titre" aria-label="Search" value="<?= htmlspecialchars($searchTerm) ?>">
+                    <button class="monSearch bg-primary text-white" type="submit"><i class="ri-search-2-line"></i></button>
+                </form>
+            </div>
+            <div class="col-1">
+                <a href="profil.php"><img src="image/<?= $user['profil'] ?>" alt=""></a>
+            </div>
+        </div>
+        <div class="row d-flex">
+            <hr>
+        </div>
     </header>
 
     <!-- Section Héro -->
@@ -73,86 +89,91 @@ if ($pdo !== null) {
         <div class="container text-center">
             <h1>Bienvenue à la Bibliothèque</h1>
             <p>Découvrez un monde de connaissances</p>
-            <div class="row">
-                <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Rechercher un livre..." aria-label="Rechercher">
-                    <button class="btn btn-outline-primary" type="submit">Rechercher</button>
-                </form>
-            </div>
         </div>
     </section>
 
-    <!-- Barre de recherche -->
-    <section class="my-4">
-        <div class="container">
-            <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Rechercher un livre..." aria-label="Rechercher">
-                <button class="btn btn-outline-primary" type="submit">Rechercher</button>
-            </form>
-        </div>
-    </section>
-      <!-- Catégories de livres -->
-      <section class="my-4">
-        <div class="container">
-            <h2 class="mb-4">Catégories</h2>
-            <div class="row">
-             <?php foreach ($categories as $categorie) : ?>
-                <div class="col-md-4 mb-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title"><?= $categorie["nom"] ?></h5>
-                            <p class="card-text"><?= $categorie["descriptions"] ?></p>
-                            <a class="btn btn-primary mt-3" href="categorie.php?indices=<?= $categorie['id_categorie'] ?>" >En savoir plus</a>
-                        </div>
-                    </div>
+    <!-- Affichage des résultats de recherche -->
+    <?php if ($searchTerm): ?>
+        <section class="my-4">
+            <div class="container">
+                <h2 class="mb-4">Résultats de recherche pour "<?= htmlspecialchars($searchTerm) ?>"</h2>
+                <div class="row">
+                    <?php if (count($searchResults) > 0): ?>
+                        <?php foreach ($searchResults as $book): ?>
+                            <div class="col-md-2 mb-3">
+                                <div class="card">
+                                    <img src="image/<?= $book['images']; ?>" class="card-img-top" alt="<?= $book['titre']; ?>">
+                                    <div class="card-body">
+                                        <h5 class="card-title"><?= $book['titre']; ?></h5>
+                                        
+                                        <a href="detail.php?indice=<?= $book['id_livre']; ?>" class="btn btn-primary">En savoir plus</a>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <p>Aucun résultat trouvé.</p>
+                    <?php endif; ?>
                 </div>
-                <?php endforeach; ?>
-                <!-- Ajoutez d'autres catégories ici -->
             </div>
-        </div>
-    </section>
+        </section>
+    <?php else: ?>
+        <!-- Catégories de livres -->
+        <section class="my-4">
+            <div class="container">
+                <h2 class="mb-4">Catégories</h2>
+                <div class="row">
+                    <?php foreach ($categories as $categorie) : ?>
+                        <div class="col-md-4 mb-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title"><?= $categorie["nom"] ?></h5>
+                                    <p class="card-text"><?= $categorie["descriptions"] ?></p>
+                                    <a class="btn btn-primary mt-3" href="categorie.php?indices=<?= $categorie['id_categorie'] ?>">En savoir plus</a>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+        </section>
 
-    <!-- Livres populaires -->
-    <section class="my-4">
-        <div class="container">
-            <h2 class="mb-4">Livres Populaires</h2>
-            <div class="row  d-flex justify-content-between">
-                <?php foreach ($popularBooks as $book) : ?>
-                    <div class="col-md-2 mb-3">
-                            <img src="image/<?= $book['images']; ?>" class="     monImage" alt="<?= $book['titre']; ?>">
+        <!-- Livres populaires -->
+        <section class="my-4">
+            <div class="container">
+                <h2 class="mb-4">Livres Populaires</h2>
+                <div class="row d-flex justify-content-between">
+                    <?php foreach ($popularBooks as $book) : ?>
+                        <div class="col-md-2 mb-3">
+                            <img src="image/<?= $book['images']; ?>" class="monImage w-100" alt="<?= $book['titre']; ?>">
                             <div class="card-body text-center">
                                 <h5 class="card-title mt-2"><?= $book['titre']; ?></h5>
-                                <!-- <p class="card-text"><?= $book['descriptions']; ?></p> -->
-                                <a class="btn btn-primary mt-3" href="detail.php?indice=<?= $book['id_livre'] ?>" >En savoir plus</a>
+                                <a class="btn btn-primary mt-3" href="detail.php?indice=<?= $book['id_livre'] ?>">En savoir plus</a>
                             </div>
-                    </div>
-                <?php endforeach; ?>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-  
-
-    <!-- Nouveautés/ Livres populaires -->
-    <section class="my-4">
-        <div class="container ">
-            <h2 class="mb-4">Nouveautés</h2>
-            <div class="row d-flex justify-content-between">
-             <?php foreach ($newBooks as $book) : ?>
-                <div class="col-md-2 mb-3">
-                            <img src="image/<?= $book['images']; ?>" class="     monImage" alt="<?= $book['titre']; ?>">
+        <!-- Nouveautés -->
+        <section class="my-4">
+            <div class="container">
+                <h2 class="mb-4">Nouveautés</h2>
+                <div class="row d-flex justify-content-between">
+                    <?php foreach ($newBooks as $book) : ?>
+                        <div class="col-md-2 mb-3">
+                            <img src="image/<?= $book['images']; ?>" class="monImage w-100" alt="<?= $book['titre']; ?>">
                             <div class="card-body text-center">
                                 <h5 class="card-title mt-2"><?= $book['titre']; ?></h5>
-                                <!-- <p class="card-text"><?= $book['descriptions']; ?></p> -->
-                                <!-- <a href="#" class="btn btn-primary mt-3">En savoir plus</a> -->
-                                <a class="btn btn-primary mt-3" href="detail.php?indice=<?= $book['id_livre'] ?>" >En savoir plus</a>
+                                <a class="btn btn-primary mt-3" href="detail.php?indice=<?= $book['id_livre'] ?>">En savoir plus</a>
                             </div>
-                    </div>
-                <?php endforeach; ?>
-                <!-- Ajoutez d'autres livres ici -->
+                        </div>
+                    <?php endforeach; ?>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+    <?php endif; ?>
 
     <!-- Pied de page -->
     <footer class="bg-dark text-white py-4">
@@ -167,7 +188,6 @@ if ($pdo !== null) {
         </div>
     </footer>
 </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-
 </html>
