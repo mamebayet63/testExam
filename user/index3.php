@@ -63,7 +63,7 @@ if ($pdo !== null) {
                 <ul>
                     <a href="index3.php" class="text-decoration-none text-black"><li class="mx-3">Accueil</li></a>
                     <a href="MesLivres.php" class="text-decoration-none  text-black"><li class="mx-3">Livres</li></a>
-                    <a href="propos.php" class="text-decoration-none text-black"><li class="mx-3">Qui sommes nous</li></a>
+                    <a href="propos2.php" class="text-decoration-none text-black"><li class="mx-3">Qui sommes nous</li></a>
                 </ul>
             </div>
             <div class="col-1">
@@ -85,7 +85,7 @@ if ($pdo !== null) {
     </header>
 
     <!-- Section Héro -->
-    <section class="hero">
+    <section class="hero"> 
         <div class="container text-center">
             <h1>Bienvenue à la Bibliothèque</h1>
             <p>Découvrez un monde de connaissances</p>
