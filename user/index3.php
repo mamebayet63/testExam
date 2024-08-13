@@ -53,13 +53,14 @@ if ($pdo !== null) {
     <style>
         /* Style personnalisé si nécessaire */
     </style>
+    
 </head>
-<body>
+<body >
 <div class="container-fluid">
     <!-- En-tête -->
     <header class="sticky-top bg-white">
         <div class="row d-flex justify-content-between align-items-center mt-2">
-            <div class="col-4">
+            <div class="col-4 fw-normal">
                 <ul>
                     <a href="index3.php" class="text-decoration-none text-black"><li class="mx-3">Accueil</li></a>
                     <a href="MesLivres.php" class="text-decoration-none  text-black"><li class="mx-3">Livres</li></a>
@@ -174,6 +175,10 @@ if ($pdo !== null) {
             </div>
         </section>
     <?php endif; ?>
+   
+    <div class="row my-5 ">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m26!1m12!1m3!1d123458.41837954767!2d-17.47279287156153!3d14.764772197549291!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m11!3e6!4m3!3m2!1d14.791475199999999!2d-17.3277184!4m5!1s0xec173c21564c333%3A0x504d9e7bb5384f5a!2secole%20221!3m2!1d14.723441999999999!2d-17.4527246!5e0!3m2!1sfr!2ssn!4v1722438426939!5m2!1sfr!2ssn" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
 
     <!-- Pied de page -->
     <footer class="bg-dark text-white py-4">

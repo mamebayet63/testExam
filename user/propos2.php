@@ -61,9 +61,7 @@ if ($pdo !== null) {
       }
     </style>
     <link
-      href="
-    https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css
-    "
+      href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css"
       rel="stylesheet"
     />
     <link
@@ -73,9 +71,7 @@ if ($pdo !== null) {
       crossorigin="anonymous"
     />
     <link
-      href="
-https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.min.css
-"
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.min.css"
       rel="stylesheet"
     />
   </head>
@@ -234,7 +230,14 @@ https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.min.css
           <div class="col-12 col-sm-6 col-lg-4 shadow-sm p-3 mt-4">
             <p class="fs-5 fw-bold">Renforcement de la Communauté</p>
             <span>
-            Le renforcement de la communauté est un élément clé pour assurer le succès et l'impact durable de notre application de gestion de bibliothèque en ligne. Nous visons à créer un environnement interactif et engageant où les utilisateurs, les bibliothécaires, et les passionnés de lecture peuvent se connecter, partager et collaborer.
+            Le renforcement de la communauté est 
+            un élément clé pour assurer le succès et 
+            l'impact durable de notre application de
+             gestion de bibliothèque en ligne.
+              Nous visons à créer un environnement 
+              interactif et engageant où les utilisateurs, 
+              les bibliothécaires, et les passionnés de lecture 
+              peuvent se connecter, partager et collaborer.
             </span>
           </div>
         </div>
@@ -249,7 +252,12 @@ https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.min.css
               ></div>
               <div>
                 <p class="text-white mt-5">
-                Notre équipe est composée de professionnels passionnés et expérimentés dans le domaine du développement web, de la gestion de projets et de la promotion de la lecture. Chacun apporte une expertise unique pour garantir le succès de notre application de gestion de bibliothèque en ligne.
+                Notre équipe est composée de professionnels 
+                passionnés et expérimentés dans le domaine 
+                du développement web, de la gestion de projets 
+                et de la promotion de la lecture. Chacun apporte
+                 une expertise unique pour garantir le succès de 
+                 notre application de gestion de bibliothèque en ligne.
                 </p>
               </div>
             </div>
@@ -327,42 +335,42 @@ https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.min.css
               <ul class="splide__list">
                 <li class="splide__slide">
                   <img
-                    src="../assets/part1.svg"
+                    src="image/Group 1.svg"
                     alt=""
                     style="object-fit: cover; height: 40px"
                   />
                 </li>
                 <li class="splide__slide">
                   <img
-                    src="../assets/part2.svg"
+                    src="image/khalil.jpg"
                     alt=""
                     style="object-fit: cover; height: 40px"
                   />
                 </li>
                 <li class="splide__slide">
                   <img
-                    src="../assets/part3.svg"
+                    src="image/khalil.jpg"
                     alt=""
                     style="object-fit: cover; height: 40px"
                   />
                 </li>
                 <li class="splide__slide">
                   <img
-                    src="../assets/part4.svg"
+                    src="image/khalil.jpg"
                     alt=""
                     style="object-fit: cover; height: 40px"
                   />
                 </li>
                 <li class="splide__slide">
                   <img
-                    src="../assets/part5.svg"
+                    src="image/khalil.jpg"
                     alt=""
                     style="object-fit: cover; height: 40px"
                   />
                 </li>
                 <li class="splide__slide">
                   <img
-                    src="../assets/part6.svg"
+                    src="image/khalil.jpg"
                     alt=""
                     style="object-fit: cover; height: 40px"
                   />
@@ -449,151 +457,16 @@ https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.min.css
         </div>
       </div>
     </main>
-    <footer style="background-color: #262626; margin-top: 130px">
-      <!-- place footer here -->
-      <div class="container py-4">
-        <div class="row d-flex justify-content-between">
-          <div class="col-3 d-none d-lg-block">
-            <h1 class="text-white">
-              <a
-                class="text-decoration-none text-white"
-                href="#"
-                style="font-family: Itim, cursive"
-                >WANEMA</a
-              >
-            </h1>
-          </div>
-          <div class="col-3 d-none col-sm-3 d-sm-block col-lg-2">
-            <p class="text-white fw-bold fs-5">À Propos</p>
-            <nav class="mt-4">
-              <ul class="list-unstyled d-flex flex-column gap-3">
-                <li>
-                  <a href="#" class="text-white text-decoration-none"
-                    >Notre Équipe</a
-                  >
-                </li>
-                <li>
-                  <a href="#" class="text-white text-decoration-none">Presse</a>
-                </li>
-                <li>
-                  <a href="#" class="text-white text-decoration-none"
-                    >Partenariats</a
-                  >
-                </li>
-                <li>
-                  <a href="#" class="text-white text-decoration-none"
-                    >Carrières</a
-                  >
-                </li>
-              </ul>
-            </nav>
-          </div>
-          <div class="col-3 d-none col-sm-3 d-sm-block col-lg-2">
-            <p class="text-white fw-bold fs-5">Ressources</p>
-            <nav class="mt-4">
-              <ul class="list-unstyled d-flex flex-column gap-3">
-                <li>
-                  <a href="#" class="text-white text-decoration-none">Blog</a>
-                </li>
-                <li>
-                  <a href="#" class="text-white text-decoration-none"
-                    >Guides d'Achat</a
-                  >
-                </li>
-                <li>
-                  <a href="#" class="text-white text-decoration-none"
-                    >Témoignages</a
-                  >
-                </li>
-                <li>
-                  <a href="#" class="text-white text-decoration-none"
-                    >Galerie de Photos</a
-                  >
-                </li>
-              </ul>
-            </nav>
-          </div>
-          <div class="col-3 d-none col-sm-6 d-sm-block col-lg-3">
-            <p class="text-white fw-bold fs-5">Informations Légales</p>
-            <nav class="mt-4">
-              <ul class="list-unstyled d-flex flex-column gap-3">
-                <li>
-                  <a href="#" class="text-white text-decoration-none"
-                    >Conditions Générales de Vente</a
-                  >
-                </li>
-                <li>
-                  <a href="#" class="text-white text-decoration-none"
-                    >Politique de Confidentialité</a
-                  >
-                </li>
-                <li>
-                  <a href="#" class="text-white text-decoration-none"
-                    >Mentions Légales</a
-                  >
-                </li>
-                <li>
-                  <a href="#" class="text-white text-decoration-none"
-                    >Politique de Cookies</a
-                  >
-                </li>
-              </ul>
-            </nav>
-          </div>
-          <div class="col-3 d-none col-sm-3 d-sm-block col-lg-2">
-            <p class="text-white fw-bold fs-5">Aide & Support</p>
-            <nav class="mt-4">
-              <ul class="list-unstyled d-flex flex-column gap-3">
-                <li>
-                  <a href="#" class="text-white text-decoration-none">FAQ</a>
-                </li>
-                <li>
-                  <a href="#" class="text-white text-decoration-none"
-                    >Politique de Retour</a
-                  >
-                </li>
-                <li>
-                  <a href="#" class="text-white text-decoration-none"
-                    >Assistance Client</a
-                  >
-                </li>
-                <li>
-                  <a href="#" class="text-white text-decoration-none"
-                    >Livraison & Suivi</a
-                  >
-                </li>
-              </ul>
-            </nav>
-          </div>
+    <footer class="bg-dark text-white py-4 mt-5">
+        <div class="container text-center">
+            <p>&copy; 2024 Bibliothèque. Tous droits réservés.</p>
+            <p>Suivez-nous sur les réseaux sociaux :</p>
+            <div class="d-flex justify-content-center">
+                <a href="#" class="text-white mx-2"><i class="ri-facebook-fill"></i></a>
+                <a href="#" class="text-white mx-2"><i class="ri-twitter-fill"></i></a>
+                <a href="#" class="text-white mx-2"><i class="ri-instagram-fill"></i></a>
+            </div>
         </div>
-        <div style="width: 100%; height: 1px; background-color: white"></div>
-        <div class="row mt-3">
-          <div class="col-12 col-sm-8 col-lg-8 d-lg-block">
-            <p class="text-center text-white text-sm-start m-0">
-              Tous droits réservés. | © 2024 Wanema.
-            </p>
-          </div>
-          <div
-            class="col-12 d-flex justify-content-center col-sm-4 justify-content-sm-end col-lg-4 justify-content-lg-end gap-3"
-          >
-            <div class="text-white fs-5">
-              <a href="#" class="text-decoration-none text-white"
-                ><i class="ri-facebook-circle-fill"></i
-              ></a>
-            </div>
-            <div class="text-white fs-5">
-              <a href="#" class="text-decoration-none text-white"
-                ><i class="ri-twitter-fill"></i
-              ></a>
-            </div>
-            <div class="text-white fs-5">
-              <a href="#" class="text-decoration-none text-white"
-                ><i class="ri-youtube-fill"></i
-              ></a>
-            </div>
-          </div>
-        </div>
-      </div>
     </footer>
     <!-- Bootstrap JavaScript Libraries -->
     <script src="

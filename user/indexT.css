@@ -1,3 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Itim&display=swap");
+:root {
+  --btn-color: #f2e416;
+}
+
 .hero {
     background: url('image/livres_sur_la_confiance_en_soi.jpeg') no-repeat center center;
     background-size: cover;
@@ -113,4 +119,99 @@ body {
   }
   
  /* ---------------profil-------------------- */
- 
+.container5{
+  height: 60vh;
+  background-color: #faf5ec;
+  margin-top: 80px;
+  display: flex;
+  flex-direction: column;
+}
+.part5Haut{
+  text-align: center;
+  margin-top: 50px;
+  width: 100%;
+}
+.part5Haut h1{
+  font-size: 48px;
+  opacity: 0.85;
+  
+}
+.part5Haut span{
+  font-size: 14px;
+}
+.part5Bas{
+  height: 12%;
+  /*border: 2px solid red;*/
+  display: flex;
+  align-self: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 30px;
+}
+.part5Bas button {
+  height: 100%;
+  width: 12%;
+  margin-left: 10px;
+}
+.part5Bas input{
+  height: 100%;
+  width: 28%;
+  border: none;
+}
+.part5Bas2{
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
+}
+.coche{
+  width: 20px;
+  height: 20px;
+  border: 1px solid black;
+  border-radius: 100%;
+  cursor: pointer;
+  background-color: white;
+}
+.part5Bas2 p{
+  margin-left: 10px;
+  opacity: 0.8;
+}
+.part5Bas2 span{
+  font-weight: bold;
+  cursor: pointer;
+}
+@media screen and (max-width: 708px){
+  .container5{
+      height: 100vh;
+      background-color: #faf5ec;
+      margin-top: 250px;
+      display: flex;
+      flex-direction: column;
+  }
+  .part5Haut{
+      text-align: center;
+      margin-top: 10px;
+      width: 100%;
+  }
+  .part5Haut h1{
+      font-size: 28px;
+      opacity: 0.85;
+      
+  }
+  .part5Haut{
+  text-align: center;
+  margin-top: 50px;
+  width: 100%;
+  }
+  .part5Bas button {
+      height: 50%;
+      width: 25%;
+      margin-left: 10px;
+  }
+  .part5Bas input{
+      height: 50%;
+      width: 35%;
+      border: none;
+  }
+}
