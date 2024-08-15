@@ -9,6 +9,9 @@ if (!isset($_SESSION['user_id'])) {
 $user_id = $_SESSION['user_id'];
 $email = $_SESSION['email'];
 
+$searchTerm = '';
+$searchResults = [];
+
 if ($pdo !== null) {
     try {
         // Récupérer toutes les catégories
@@ -17,7 +20,12 @@ if ($pdo !== null) {
 
         // Préparer un tableau pour stocker les livres par catégorie
         $livresParCategorie = [];
-
+        if (isset($_GET['search'])) {
+            $searchTerm = $_GET['search'];
+            $searchStmt = $pdo->prepare("SELECT * FROM livre WHERE titre LIKE :searchTerm");
+            $searchStmt->execute([':searchTerm' => '%' . $searchTerm . '%']);
+            $searchResults = $searchStmt->fetchAll();
+        }
         // Récupérer les livres pour chaque catégorie
         foreach ($categories as $categorie) {
             $categorie_id = $categorie['id_categorie'];
@@ -40,6 +48,8 @@ if ($pdo !== null) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Livres par Catégorie</title>
     <link rel="stylesheet" href="indexT.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.min.css">
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         .carousel-item {
